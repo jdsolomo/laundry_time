@@ -10,8 +10,12 @@ grovepi.pinMode(piezo,"INPUT")
 while True:
     try:
         # When vibration is detected, the sensor outputs a logic high signal
-        print grovepi.analogRead(piezo)
-        time.sleep(.5)
+        vibration_avg=0
+        for i in range(10):
+        	vib= grovepi.analogRead(piezo)
+        	time.sleep(.1)
+        	vibration_avg+=vib
+        vibration_avg=vibration_avg/10
 
     except IOError:
         print "Error"
